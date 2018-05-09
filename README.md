@@ -1,0 +1,1 @@
+# ideashre_study
