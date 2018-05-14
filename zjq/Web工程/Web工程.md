@@ -50,4 +50,4 @@ http://start.spring.io/
 
 [![ivzmG.png](https://s1.ax2x.com/2018/05/14/ivzmG.png)](https://simimg.com/i/ivzmG)
 
-然后可以开始运行了。http://localhost:8080/login或者http://localhost:8080/register。所以@GetMapping是干嘛的你？？
+然后可以开始运行了。http://localhost:8080/login或者http://localhost:8080/register。所以@GetMapping是干嘛的？？
