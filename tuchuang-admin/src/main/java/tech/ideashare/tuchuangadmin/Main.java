@@ -1,4 +1,4 @@
-package ideashare.tuchuangadmin;
+package tech.ideashare.tuchuangadmin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
