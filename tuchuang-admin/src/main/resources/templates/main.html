@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>这是一个前端的测试页面</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+
+    <style>
+        p {
+            font-size: 100px;
+            background: rgba(113, 202, 126, 0.56);
+        }
+        #password{
+
+        }
+        .account{
+
+        }
+
+    </style>
+</head>
+
+
+
+<body>
+<p >账号：</p>
+<input type="text" id="accountId" >
+密码：
+<input type="password" class="account" id="password">
+记住账号：
+<input type="checkbox">
+
+<input type="button" value="登录" id="loginButton">
+
+<script>
+
+$("#loginButton").on('click',function (event) {
+
+  var con = confirm("confirm");
+})
+
+</script>
+
+</body>
+
+
+
+</html>
