@@ -7,6 +7,7 @@ import mini.ideashare.cms.model.ArticleDetail;
 import mini.ideashare.cms.model.ArticleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,12 @@ public class ArticleController extends AbstractBaseController{
 
     @GetMapping("/article/getArticleDetailById")
     public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id){
+       ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
+       return assembleResponse(articleDetail);
+    }
+
+    @PostMapping("/article/saveArticleDetail")
+    public BaseResponse saveArticleDetail(@RequestParam(required = false) Integer id){
        ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
        return assembleResponse(articleDetail);
     }
