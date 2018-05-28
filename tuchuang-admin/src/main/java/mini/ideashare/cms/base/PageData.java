@@ -1,4 +1,4 @@
-package mini.ideashare.tlbb.base;
+package mini.ideashare.cms.base;
 
 import java.io.Serializable;
 import java.util.List;

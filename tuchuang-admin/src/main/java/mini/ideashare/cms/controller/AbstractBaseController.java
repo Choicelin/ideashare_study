@@ -1,8 +1,8 @@
-package mini.ideashare.tlbb.controller;
+package mini.ideashare.cms.controller;
 
 
-import mini.ideashare.tlbb.base.BaseResponse;
-import mini.ideashare.tlbb.base.PageData;
+import mini.ideashare.cms.base.BaseResponse;
+import mini.ideashare.cms.base.PageData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;

@@ -1,4 +1,4 @@
-package mini.ideashare.tlbb.common;
+package mini.ideashare.cms.common;
 
 /**
  * 自定义异常，在程序中运行出错时可以主动抛出这个异常

@@ -1,7 +1,7 @@
-package mini.ideashare.tlbb.base;
+package mini.ideashare.cms.base;
 
 
-import mini.ideashare.tlbb.common.BusinessException;
+import mini.ideashare.cms.common.BusinessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
