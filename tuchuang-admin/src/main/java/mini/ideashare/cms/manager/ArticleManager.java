@@ -26,6 +26,15 @@ public class ArticleManager {
         qc.setId(id);
         return articleDAO.listArticleDetail(qc).get(0);
     }
+    public boolean saveArticleDetail(ArticleDetail articleDetail){
+        if(null==articleDetail.getId()){
+            //如果id为空的话，那就是新增
+            return articleDAO.insertArticleDetail(articleDetail)>1;
+        }else {
+            //如果id不为空的话，那就是更新
+            return articleDAO.updateArticleDetail(articleDetail)>1;
+        }
+    }
 
     public List<ArticleDetail> listArticleByType(Integer typeId,Integer pageIndex,Integer pageSize){
         ArticleDetailQC qc = new ArticleDetailQC();

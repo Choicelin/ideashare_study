@@ -11,6 +11,9 @@ import java.util.List;
 @Repository
 public interface ArticleDAO {
     int insertArticleDetail(ArticleDetail articleDetail);
+
+    int updateArticleDetail(ArticleDetail articleDetail);
+
     List<ArticleDetail> listArticleDetail(ArticleDetailQC articleDetail);
     Integer countArticleDetail(ArticleDetailQC articleDetail);
 }

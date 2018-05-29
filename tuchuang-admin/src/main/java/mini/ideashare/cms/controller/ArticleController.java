@@ -18,37 +18,43 @@ import java.util.List;
  * @CreateTime 2018/5/27
  **/
 @RestController
-public class ArticleController extends AbstractBaseController{
+public class ArticleController extends AbstractBaseController {
 
     @Autowired
     private ArticleManager articleManager;
 
     @GetMapping("/article/getArticleDetailById")
-    public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id){
-       ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
-       return assembleResponse(articleDetail);
+    public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id) {
+        ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
+        return assembleResponse(articleDetail);
     }
 
     @PostMapping("/article/saveArticleDetail")
-    public BaseResponse saveArticleDetail(@RequestParam(required = false) Integer id){
-       ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
-       return assembleResponse(articleDetail);
+    public BaseResponse saveArticleDetail(@RequestParam(required = false) Integer id,
+                                          @RequestParam String title,
+                                          @RequestParam String summary,
+                                          @RequestParam String content) {
+        //需要考虑下怎么从session里面拿用户信息
+
+        ArticleDetail detail = new ArticleDetail();
+        detail.setId(id).setTitle(title).setSummary(summary).setContext(content).setAuthorId(1);
+        boolean successFlag = articleManager.saveArticleDetail(detail);
+        return assembleResponse(successFlag);
     }
 
     @GetMapping("/article/listArticleByType")
     public BaseResponse<PageData<ArticleDetail>> listArticleByType(@RequestParam Integer typeId,
                                                                    @RequestParam Integer pageIndex,
-                                                                   @RequestParam Integer pageSize){
-       List<ArticleDetail> articleDetails = articleManager.listArticleByType(typeId,pageIndex,pageSize);
-       int totalCount = articleManager.countArticleByType(typeId);
-       return assemblePageResponse(articleDetails,totalCount,pageIndex,pageSize);
+                                                                   @RequestParam Integer pageSize) {
+        List<ArticleDetail> articleDetails = articleManager.listArticleByType(typeId, pageIndex, pageSize);
+        int totalCount = articleManager.countArticleByType(typeId);
+        return assemblePageResponse(articleDetails, totalCount, pageIndex, pageSize);
     }
 
 
-
     @GetMapping("/article/getAllArticleType")
-    public BaseResponse<PageData<ArticleType>> getAllArticleType(){
-       List<ArticleType> articleTypes = articleManager.getAllArticleType();
-       return assemblePageResponse(articleTypes,0,0,0);
+    public BaseResponse<PageData<ArticleType>> getAllArticleType() {
+        List<ArticleType> articleTypes = articleManager.getAllArticleType();
+        return assemblePageResponse(articleTypes, 0, 0, 0);
     }
 }
