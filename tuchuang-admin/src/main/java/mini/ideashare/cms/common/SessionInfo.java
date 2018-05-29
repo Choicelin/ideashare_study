@@ -15,11 +15,46 @@ public class SessionInfo implements Serializable {
 
     private String sessionId;
 
-    private String currentUserAgent;
+    private String currentUserName;
 
     private List<String> roleIds = new ArrayList<String>();
 
     private String groupUserId;
 
 
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public SessionInfo setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    public String getCurrentUserName() {
+        return currentUserName;
+    }
+
+    public SessionInfo setCurrentUserName(String currentUserName) {
+        this.currentUserName = currentUserName;
+        return this;
+    }
+
+    public List<String> getRoleIds() {
+        return roleIds;
+    }
+
+    public SessionInfo setRoleIds(List<String> roleIds) {
+        this.roleIds = roleIds;
+        return this;
+    }
+
+    public String getGroupUserId() {
+        return groupUserId;
+    }
+
+    public SessionInfo setGroupUserId(String groupUserId) {
+        this.groupUserId = groupUserId;
+        return this;
+    }
 }
