@@ -11,6 +11,28 @@ public class ArticleDetail {
     private String summary;
     //作者id
     private Integer authorId;
+    //ContentType 1 markdown , 2 html
+    private Integer type;
+    // 是否是原创： 0 否 1 是。
+    private Integer originalFlag;
+
+    public Integer getType() {
+        return type;
+    }
+
+    public ArticleDetail setType(Integer type) {
+        this.type = type;
+        return this;
+    }
+
+    public Integer getOriginalFlag() {
+        return originalFlag;
+    }
+
+    public ArticleDetail setOriginalFlag(Integer originalFlag) {
+        this.originalFlag = originalFlag;
+        return this;
+    }
 
     public Integer getId() {
         return id;
