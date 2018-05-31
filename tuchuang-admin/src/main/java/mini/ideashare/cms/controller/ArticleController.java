@@ -6,12 +6,14 @@ import mini.ideashare.cms.manager.ArticleManager;
 import mini.ideashare.cms.model.ArticleDetail;
 import mini.ideashare.cms.model.ArticleType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author lixiang
@@ -22,6 +24,9 @@ public class ArticleController extends AbstractBaseController {
 
     @Autowired
     private ArticleManager articleManager;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping("/article/getArticleDetailById")
     public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id) {
