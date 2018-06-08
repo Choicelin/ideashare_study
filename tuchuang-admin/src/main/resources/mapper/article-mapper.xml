@@ -10,6 +10,7 @@
         <result column="author_id" property="authorId" jdbcType="INTEGER" />
         <result column="type" property="type" jdbcType="INTEGER" />
         <result column="original_flag" property="originalFlag" jdbcType="INTEGER" />
+        <result column="type_id" property="typeId" jdbcType="INTEGER" />
     </resultMap>
 
     <sql id="queryCondition" >
@@ -29,11 +30,14 @@
             <if test="authorId != null" >
                 and author_id=#{authorId}
             </if>
+            <if test="typeId != null" >
+                and type_id =#{typeId}
+            </if>
         </where>
     </sql>
 
     <sql id="Base_Column_List">
-id,title,context,summary,author_id,type,originalFlag
+id,title,context,summary,author_id,type,original_flag,type_id
 </sql>
     <insert id="insertArticleDetail" parameterType="mini.ideashare.cms.model.ArticleDetail">
         insert into article_detail
@@ -59,6 +63,9 @@ id,title,context,summary,author_id,type,originalFlag
             <if test="originalFlag != null" >
                 original_flag,
             </if>
+            <if test="typeId != null" >
+                type_id,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," ><if test="id != null">
             #{id,jdbcType=INTEGER},
@@ -77,8 +84,12 @@ id,title,context,summary,author_id,type,originalFlag
             </if>
             <if test="type != null">
                 #{type,jdbcType=INTEGER},
-            </if><if test="originalFlag != null">
+            </if>
+            <if test="originalFlag != null">
                 #{originalFlag,jdbcType=INTEGER},
+            </if>
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -106,9 +117,13 @@ id,title,context,summary,author_id,type,originalFlag
             <if test="originalFlag != null">
                 original_flag = #{originalFlag},
             </if>
+            <if test="typeId != null">
+                type_id = #{typeId},
+            </if>
         </trim>
         WHERE  id = #{id}
     </update>
+
     <select id="listArticleDetail" parameterType="mini.ideashare.cms.qc.ArticleDetailQC" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
         from article_detail <include refid="queryCondition" />

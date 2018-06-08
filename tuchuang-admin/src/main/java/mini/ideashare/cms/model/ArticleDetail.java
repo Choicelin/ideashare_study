@@ -15,6 +15,17 @@ public class ArticleDetail {
     private Integer type;
     // 是否是原创： 0 否 1 是。
     private Integer originalFlag;
+    //类别ID
+    private Integer typeId;
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public ArticleDetail setTypeId(Integer typeId) {
+        this.typeId = typeId;
+        return this;
+    }
 
     public Integer getType() {
         return type;

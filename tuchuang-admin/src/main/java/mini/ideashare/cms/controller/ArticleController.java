@@ -5,6 +5,7 @@ import mini.ideashare.cms.base.PageData;
 import mini.ideashare.cms.manager.ArticleManager;
 import mini.ideashare.cms.model.ArticleDetail;
 import mini.ideashare.cms.model.ArticleType;
+import mini.ideashare.cms.model.vo.ArticleDetailListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * @Author lixiang
@@ -48,10 +50,17 @@ public class ArticleController extends AbstractBaseController {
     }
 
     @GetMapping("/article/listArticleByType")
-    public BaseResponse<PageData<ArticleDetail>> listArticleByType(@RequestParam Integer typeId,
-                                                                   @RequestParam Integer pageIndex,
-                                                                   @RequestParam Integer pageSize) {
-        List<ArticleDetail> articleDetails = articleManager.listArticleByType(typeId, pageIndex, pageSize);
+    public BaseResponse<PageData<ArticleDetailListVO>> listArticleByType(@RequestParam Integer typeId,
+                                                                         @RequestParam Integer pageIndex,
+                                                                         @RequestParam Integer pageSize) {
+        List<ArticleDetailListVO> articleDetails = articleManager.listArticleByType(typeId, pageIndex, pageSize)
+                .stream().map(articleDetail -> {
+                    ArticleDetailListVO vo = new ArticleDetailListVO();
+                    vo.setAuthorId(articleDetail.getAuthorId()).setId(articleDetail.getId())
+                            .setOriginalFlag(articleDetail.getOriginalFlag()).setSummary(articleDetail.getSummary())
+                            .setTitle(articleDetail.getTitle()).setType(articleDetail.getType()).setTypeId(articleDetail.getTypeId());
+                    return vo;
+                }).collect(Collectors.toList());
         int totalCount = articleManager.countArticleByType(typeId);
         return assemblePageResponse(articleDetails, totalCount, pageIndex, pageSize);
     }

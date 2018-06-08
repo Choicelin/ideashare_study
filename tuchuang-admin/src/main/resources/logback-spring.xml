@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot/src/main/resources/org/springframework/boot/logging/logback/defaults.xml -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="APP_NAME" value="mini-ideashare"/>
+    <property name="LOG_PATH" value="${user.home}/${APP_NAME}/logs"/>
+    <property name="LOG_FILE" value="${LOG_PATH}/application.log"/>
+    <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS}|${LOG_LEVEL_PATTERN:-%5p}|${PID:- }|%t|%-40.40logger{39}|%X{EAGLEEYE_TRACE_ID}|%X{EAGLEEYE_RPC_ID}|%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <appender name="APPLICATION" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/application.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/application.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 超过30天的备份文件会被删除 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--DUBBO 别人调用我们的日志，主要用于记录入参，回参，会在线上输出-->
+    <appender name="DUBBOPROVIDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/dubboprovider.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/hsfprovider.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 超过3天的备份文件会被删除 -->
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--业务层日志，主用来记录一些重要的类方法的调用，会在线上输出-->
+    <appender name="BUSSINESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/bussiness.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/bussiness.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 超过3天的备份文件会被删除 -->
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="SQL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/sql.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/sql.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 超过30天的备份文件会被删除 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="RPC" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/rpc.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/rpc.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 超过30天的备份文件会被删除 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/error.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 超过30天的备份文件会被删除 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender"  >
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+
+    <springProfile name="production">
+        <logger name="red.lightblue.mall.base.ExceptionHandle" additivity="false">
+            <level value="ERROR"/>
+            <appender-ref ref="error"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="APPLICATION"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="!production">
+        <logger name="mini.ideashare.cms.dao" additivity="false">
+            <level value="DEBUG"/>
+            <appender-ref ref="SQL"/>
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="APPLICATION"/>
+        </root>
+    </springProfile>
+</configuration>
