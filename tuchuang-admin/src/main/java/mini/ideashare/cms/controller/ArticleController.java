@@ -8,12 +8,15 @@ import mini.ideashare.cms.model.ArticleType;
 import mini.ideashare.cms.model.vo.ArticleDetailListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -27,9 +30,6 @@ public class ArticleController extends AbstractBaseController {
     @Autowired
     private ArticleManager articleManager;
 
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
     @GetMapping("/article/getArticleDetailById")
     public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id) {
         ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
@@ -37,14 +37,10 @@ public class ArticleController extends AbstractBaseController {
     }
 
     @PostMapping("/article/saveArticleDetail")
-    public BaseResponse saveArticleDetail(@RequestParam(required = false) Integer id,
-                                          @RequestParam String title,
-                                          @RequestParam String summary,
-                                          @RequestParam String content) {
+    public BaseResponse saveArticleDetail(@RequestBody ArticleDetail detail) {
         //需要考虑下怎么从session里面拿用户信息
 
-        ArticleDetail detail = new ArticleDetail();
-        detail.setId(id).setTitle(title).setSummary(summary).setContext(content).setAuthorId(1);
+        detail.setAuthorId(1);
         boolean successFlag = articleManager.saveArticleDetail(detail);
         return assembleResponse(successFlag);
     }
@@ -70,5 +66,36 @@ public class ArticleController extends AbstractBaseController {
     public BaseResponse<PageData<ArticleType>> getAllArticleType() {
         List<ArticleType> articleTypes = articleManager.getAllArticleType();
         return assemblePageResponse(articleTypes, 0, 0, 0);
+    }
+
+    /**
+     * 上传文件的接口
+     * @param file 文件
+     * @return
+     */
+    @PostMapping("/utils/uploadImage")
+    public BaseResponse<Map> uploadImage(@RequestParam("file") MultipartFile file) {
+
+        FileOutputStream outputStream = null;
+        try {
+            String path = "/home/files/fenxiangtech/images/";
+            String fileName = path + file.getOriginalFilename();
+            File file1 = new File(fileName);
+            outputStream = new FileOutputStream(file1);
+            outputStream.write(file.getBytes());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return assembleResponse(null, false);
+        } finally {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Map<String , String >  map  =new HashMap<>();
+        map.put("info","http://r.fenxiangtech.com/images/"+file.getOriginalFilename());
+        return assembleResponse(map, true);
     }
 }
