@@ -12,6 +12,7 @@ import mini.ideashare.cms.qc.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,6 +23,7 @@ public class FeedbackManager {
     private FeedbackDAO feedbackDAO;
 
     public boolean saveFeedback(Feedback feedback){
+        feedback.setCreateTime(new Date());
        return feedbackDAO.insertFeedback(feedback)==1;
     }
 
