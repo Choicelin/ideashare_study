@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mini.ideashare.cms.dao.ArticleDAO">
+
+    <resultMap id="BaseResultMap" type="mini.ideashare.cms.model.Feedback" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="queryCondition" >
+        <where>
+            <if test="id != null" >
+                and id=#{id}
+            </if>
+            <if test="email != null" >
+                and email=#{email}
+            </if>
+            <if test="mobile != null" >
+                and mobile=#{mobile}
+            </if>
+            <if test="content != null" >
+                and content=#{content}
+            </if>
+            <if test="createTime != null" >
+                and create_time=#{createTime}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
+id,email,mobile,content,create_time
+</sql>
+    <insert id="insertFeedback" parameterType="mini.ideashare.cms.model.Feedback">
+        insert into feedback
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="mobile != null" >
+                mobile,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," ><if test="id != null">
+            #{id,jdbcType=BIGINT},
+        </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateFeedback" parameterType="mini.ideashare.cms.model.Feedback">
+        UPDATE feedback
+        <trim prefix="set" suffixOverrides="," >
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+        </trim>
+        WHERE  id = #{id}
+    </update>
+    <select id="listFeedback" parameterType="mini.ideashare.cms.qc.FeedbackQC" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from feedback <include refid="queryCondition" />
+        <if test="sortBy != null and sortType != null" >
+            order by ${sortBy} ${sortType}
+        </if>
+        <if test="page != null">
+            <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
+        </if>
+    </select>
+    <select id="countFeedback" parameterType="mini.ideashare.cms.qc.FeedbackQC" resultType="java.lang.Integer">
+        SELECT count(*) from feedback
+        <include refid="queryCondition"></include>
+    </select>
+
+</mapper>

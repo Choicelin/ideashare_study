@@ -27,7 +27,7 @@ public class AdminController extends AbstractBaseController {
      * @return
      */
     @PostMapping("/admin/publishWebAdmin")
-    public BaseResponse<Map> publishWebAdmin(@RequestParam("file") MultipartFile file) {
+    public BaseResponse<Boolean> publishWebAdmin(@RequestParam("file") MultipartFile file) {
 
         FileOutputStream outputStream = null;
         try {
@@ -47,8 +47,17 @@ public class AdminController extends AbstractBaseController {
                 e.printStackTrace();
             }
         }
-        Map<String , String >  map  =new HashMap<>();
-        map.put("info","http://r.fenxiangtech.com/images/"+file.getOriginalFilename());
-        return assembleResponse(map, true);
+        //文件保存完之后，开始执行删除和解压的脚本
+        String cmds[] ={"mv /home/files/publishWebAdmin/"+file.getOriginalFilename()+"  /home/webadmin/dist.zip",
+        "rm -r /home/webadmin/dist","unzip dist"};
+
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            runtime.exec(cmds);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return assembleResponse( true);
     }
 }
