@@ -38,6 +38,8 @@ public class ArticleManager {
 
     public List<ArticleDetail> listArticleByType(Integer typeId,Integer pageIndex,Integer pageSize){
         ArticleDetailQC qc = new ArticleDetailQC();
+        qc.setSortBy("id");
+        qc.setSortType("desc");
         Page page = new Page(pageIndex, pageSize);
         qc.setTypeId(typeId).setPage(page);
         return articleDAO.listArticleDetail(qc);

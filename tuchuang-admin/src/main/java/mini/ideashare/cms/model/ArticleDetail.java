@@ -1,5 +1,7 @@
 package mini.ideashare.cms.model;
 
+import java.util.Date;
+
 public class ArticleDetail {
     //自增主键
     private Integer id;
@@ -17,6 +19,30 @@ public class ArticleDetail {
     private Integer originalFlag;
     //类别ID
     private Integer typeId;
+
+    //创建时间
+    private Date createTime;
+
+    //更新时间
+    private Date updateTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public ArticleDetail setCreateTime(Date createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public ArticleDetail setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
 
     public Integer getTypeId() {
         return typeId;

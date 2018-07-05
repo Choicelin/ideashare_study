@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -30,10 +32,23 @@ public class ArticleController extends AbstractBaseController {
     @Autowired
     private ArticleManager articleManager;
 
+    ExecutorService service2 = Executors.newCachedThreadPool();
+
+
     @GetMapping("/article/getArticleDetailById")
     public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id) {
         ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
         return assembleResponse(articleDetail);
+    }
+
+    @GetMapping("/article/testThread")
+    public BaseResponse<ArticleDetail> testThread() {
+
+        ExecutorService service = Executors.newCachedThreadPool();
+        System.out.println("inner method   "+service);
+
+        System.out.println("inner class   "+service2);
+        return assembleResponse(null);
     }
 
     @PostMapping("/article/saveArticleDetail")

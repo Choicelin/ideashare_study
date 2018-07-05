@@ -1,5 +1,7 @@
 package mini.ideashare.cms.qc;
 
+import java.util.Date;
+
 /**
  * Query Condition 查询条件， 用于数据库条件查询
  * @Author lixiang
@@ -12,6 +14,30 @@ public class BaseQC {
     private String sortType;
     // 分页条件
     private Page page;
+
+    //创建时间
+    private Date createTime;
+
+    //更新时间
+    private Date updateTime;
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public BaseQC setCreateTime(Date createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public BaseQC setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
 
     public String getSortBy() {
         return sortBy;
