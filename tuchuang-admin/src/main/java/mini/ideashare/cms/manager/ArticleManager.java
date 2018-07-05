@@ -10,6 +10,7 @@ import mini.ideashare.cms.qc.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,9 +30,11 @@ public class ArticleManager {
     public boolean saveArticleDetail(ArticleDetail articleDetail){
         if(null==articleDetail.getId()){
             //如果id为空的话，那就是新增
+            articleDetail.setCreateTime(new Date());
             return articleDAO.insertArticleDetail(articleDetail)>1;
         }else {
             //如果id不为空的话，那就是更新
+            articleDetail.setUpdateTime(new Date());
             return articleDAO.updateArticleDetail(articleDetail)>1;
         }
     }
