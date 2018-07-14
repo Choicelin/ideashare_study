@@ -1,12 +1,14 @@
 package mini.ideashare.cms.model;
 
+import java.util.Date;
+
 public class User {
     private Long id;
     private String openId;
     private String userName;
     private String userImage;
-    private String createTime;
-    private String lastLoginTime;
+    private Date createTime;
+    private Date lastLoginTime;
 
     public Long getId() {
         return id;
@@ -44,25 +46,25 @@ public class User {
         return this;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public User setCreateTime(String createTime) {
+    public User setCreateTime(Date createTime) {
         this.createTime = createTime;
         return this;
     }
 
-    public String getLastLoginTime() {
+    public Date getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public User setLastLoginTime(String lastLoginTime) {
+    public User setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
         return this;
     }
 
-    public User(Long id, String openId, String userName, String userImage, String createTime, String lastLoginTime) {
+    public User(Long id, String openId, String userName, String userImage, Date createTime, Date lastLoginTime) {
         this.id = id;
         this.openId = openId;
         this.userName = userName;
