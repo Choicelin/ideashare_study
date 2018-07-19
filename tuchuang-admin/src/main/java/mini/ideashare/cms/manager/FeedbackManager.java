@@ -23,6 +23,9 @@ public class FeedbackManager {
     private FeedbackDAO feedbackDAO;
 
     public boolean saveFeedback(Feedback feedback){
+        if(feedback.getContent()==null||feedback.getContent().equals("")){
+            return false;
+        }
         feedback.setCreateTime(new Date());
        return feedbackDAO.insertFeedback(feedback)==1;
     }
