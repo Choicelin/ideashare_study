@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>tech.ideashare</groupId>
-        <artifactId>tuchuang</artifactId>
+        <groupId>mini.ideashare</groupId>
+        <artifactId>mini</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>mini.ideashare</groupId>
-    <artifactId>tlbb-web</artifactId>
+    <artifactId>mini-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
