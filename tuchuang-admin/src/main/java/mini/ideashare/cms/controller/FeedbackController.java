@@ -38,21 +38,15 @@ public class FeedbackController extends AbstractBaseController {
     private FeedbackManager feedbackManager;
     @PostMapping("/feedback/saveFeedback")
     public BaseResponse saveFeedback(@RequestBody Feedback feedback) {
-
-        //# region sendEmail
+        //需要考虑下怎么从session里面拿用户信息
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(()->{
-            IS_MailConfig mailConfig = new IS_MailConfig("smtp.mxhichina.com",25,"tongzhuang@ideashare.tech","DeMeng888");
-
-            mailConfig.setReceiverAddr("luomiaommm@163.com");
+            System.out.println("Begin to Send Email");
+            IS_MailConfig mailConfig = new IS_MailConfig("smtp.mxhichina.com",465,"tongzhuang@ideashare.tech","DeMeng888");
+            mailConfig.setReceiverAddr(new String[]{"lixiang9409@vip.qq.com","413807584@qq.com"});
             IS_MailUtils.sendSimpleBySMTP(mailConfig,"全栈工坊反馈信息", JSON.toJSONString(feedback));
         });
-        //#endregion
-       boolean successFlag = feedbackManager.saveFeedback(feedback);
-       if (successFlag){
-
-
-       }
+        boolean successFlag = feedbackManager.saveFeedback(feedback);
         return assembleResponse(successFlag);
     }
 }

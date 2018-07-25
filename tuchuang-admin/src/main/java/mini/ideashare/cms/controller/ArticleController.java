@@ -37,6 +37,7 @@ public class ArticleController extends AbstractBaseController {
 
     @GetMapping("/article/getArticleDetailById")
     public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id) {
+        logger.info("aaaaaaaa");
         ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
         return assembleResponse(articleDetail);
     }
