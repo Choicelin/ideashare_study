@@ -72,6 +72,15 @@ public class User {
         return this;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
     public User(Long id, String openId, String userName, String userImage, Date createTime, Date lastLoginTime) {
         this.id = id;
         this.openId = openId;

@@ -23,9 +23,17 @@ public class UserController extends AbstractBaseController {
     // wx9a4049b07d5a5bc7
 
 
-    @PostMapping("/user/saveUser")
-    public int insert(@RequestBody  User user){
-        return userManager.insert(user);
+    @PostMapping("/user/register")
+    public BaseResponse<Boolean> insert(@RequestBody  User user){
+
+        int insert = userManager.insert(user);
+        return assembleResponse(insert==1);
+    }
+
+    @PostMapping("/user/login")
+    public BaseResponse<User> login(@RequestBody  User user){
+        User login = userManager.login(user);
+        return assembleResponse(login);
     }
 
     @GetMapping("receiveWxLoginCode")
