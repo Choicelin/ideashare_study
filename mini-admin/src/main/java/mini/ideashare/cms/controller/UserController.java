@@ -24,9 +24,9 @@ public class UserController extends AbstractBaseController {
 
 
     @PostMapping("/user/register")
-    public BaseResponse<Boolean> insert(@RequestBody  User user){
+    public BaseResponse<Boolean> register(@RequestBody  User user){
 
-        int insert = userManager.insert(user);
+        int insert = userManager.register(user);
         return assembleResponse(insert==1);
     }
 

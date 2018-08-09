@@ -13,7 +13,8 @@ import java.util.List;
 public class UserManager {
     @Autowired
     private UserDAO userDAO;
-    public int insert(User user){
+
+    public int register(User user){
         if(StringUtils.isEmpty(user.getUserName())){
             return 0;
         }
