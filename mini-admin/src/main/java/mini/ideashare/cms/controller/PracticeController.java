@@ -8,6 +8,8 @@ import mini.ideashare.cms.model.Practice;
 import mini.ideashare.cms.model.vo.ArticleDetailListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,5 +44,11 @@ public class PracticeController extends AbstractBaseController {
         return assembleResponse(practice);
     }
 
+    @PostMapping("/practice/savePractice")
+    public BaseResponse savePractice(@RequestBody Practice practice) {
+        //发布人的信息拿不到，以后改从redis里面拿
+        boolean successFlag = practiceManager.savePractice(practice);
+        return assembleResponse(successFlag);
+    }
 
 }

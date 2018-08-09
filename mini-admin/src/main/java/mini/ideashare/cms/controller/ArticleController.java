@@ -32,7 +32,6 @@ public class ArticleController extends AbstractBaseController {
     @Autowired
     private ArticleManager articleManager;
 
-    ExecutorService service2 = Executors.newCachedThreadPool();
 
 
     @GetMapping("/article/getArticleDetailById")
@@ -41,15 +40,7 @@ public class ArticleController extends AbstractBaseController {
         return assembleResponse(articleDetail);
     }
 
-    @GetMapping("/article/testThread")
-    public BaseResponse<ArticleDetail> testThread() {
 
-        ExecutorService service = Executors.newCachedThreadPool();
-        System.out.println("inner method   "+service);
-
-        System.out.println("inner class   "+service2);
-        return assembleResponse(null);
-    }
 
     @PostMapping("/article/saveArticleDetail")
     public BaseResponse saveArticleDetail(@RequestBody ArticleDetail detail) {

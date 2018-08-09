@@ -17,5 +17,5 @@ public interface PracticeDAO {
     int insertPractice(Practice practice);
     List<Practice> listPractice(PracticeQC practice);
     Integer countPractice(PracticeQC practice);
-    int updatePractice(PracticeQC practice);
+    int updatePractice(Practice practice);
 }

@@ -11,6 +11,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,6 +48,18 @@ public class PracticeManager {
             return practiceList.get(0);
         }else {
             return null;
+        }
+    }
+
+    public boolean savePractice(Practice practice){
+        if(null==practice.getId()){
+            //如果id为空的话，那就是新增
+            practice.setCreateTime(new Date());
+            return practiceDAO.insertPractice(practice)>1;
+        }else {
+            //如果id不为空的话，那就是更新
+            practice.setUpdateTime(new Date());
+            return practiceDAO.updatePractice(practice)>1;
         }
     }
 
