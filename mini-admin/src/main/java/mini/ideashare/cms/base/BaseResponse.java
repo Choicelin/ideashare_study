@@ -13,6 +13,7 @@ public class BaseResponse<T> implements Serializable {
     private boolean success = true;
 
     private String message;
+    private String messageCode;
     /**
      *  data返回list时T需要继承 PageData
      *  data为单个vo时，T不需要继承 PageData
@@ -31,6 +32,12 @@ public class BaseResponse<T> implements Serializable {
    public BaseResponse(boolean success, String message) {
         this.success = success;
         this.message = message;
+    }
+
+    public BaseResponse(boolean success, String message, String messageCode) {
+        this.success = success;
+        this.message = message;
+        this.messageCode = messageCode;
     }
 
     public BaseResponse(boolean success, String message, T data) {
@@ -61,5 +68,14 @@ public class BaseResponse<T> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public String getMessageCode() {
+        return messageCode;
+    }
+
+    public BaseResponse<T> setMessageCode(String messageCode) {
+        this.messageCode = messageCode;
+        return this;
     }
 }

@@ -182,6 +182,26 @@ public abstract class AbstractBaseController {
         baseResponse.setSuccess(success);
         return baseResponse;
     }
+    public <T> BaseResponse<T> assembleResponse(T data, String message, String messageCode,boolean success) {
+        BaseResponse<T> baseResponse = new BaseResponse<T>();
+        baseResponse.setData(data);
+        baseResponse.setMessage(message);
+        baseResponse.setSuccess(success);
+        baseResponse.setMessageCode(messageCode);
+        return baseResponse;
+    }
+
+
+    public <T> BaseResponse<T> assembleResponse(boolean success, String messageCode,String message) {
+        BaseResponse<T> baseResponse = new BaseResponse<T>();
+        baseResponse.setMessage(message);
+        baseResponse.setSuccess(success);
+        baseResponse.setMessageCode(messageCode);
+        return baseResponse;
+    }
+
+
+
 
     public <T> BaseResponse<T> assembleResponse(T data, boolean success) {
         return assembleResponse(data, "", success);
