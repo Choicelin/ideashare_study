@@ -1,8 +1,12 @@
-package mini.ideashare.cms.model;
+package mini.ideashare.cms.qc;
 
 import java.util.Date;
 
-public class User {
+/**
+ * @Author lixiang
+ * @CreateTime 2018/8/9
+ **/
+public class UserQC extends BaseQC {
     //自增id
     private Long id;
     //微信openId
@@ -22,7 +26,7 @@ public class User {
         return id;
     }
 
-    public User setId(Long id) {
+    public UserQC setId(Long id) {
         this.id = id;
         return this;
     }
@@ -31,7 +35,7 @@ public class User {
         return openId;
     }
 
-    public User setOpenId(String openId) {
+    public UserQC setOpenId(String openId) {
         this.openId = openId;
         return this;
     }
@@ -40,8 +44,17 @@ public class User {
         return userName;
     }
 
-    public User setUserName(String userName) {
+    public UserQC setUserName(String userName) {
         this.userName = userName;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public UserQC setPassword(String password) {
+        this.password = password;
         return this;
     }
 
@@ -49,16 +62,18 @@ public class User {
         return userImage;
     }
 
-    public User setUserImage(String userImage) {
+    public UserQC setUserImage(String userImage) {
         this.userImage = userImage;
         return this;
     }
 
+    @Override
     public Date getCreateTime() {
         return createTime;
     }
 
-    public User setCreateTime(Date createTime) {
+    @Override
+    public UserQC setCreateTime(Date createTime) {
         this.createTime = createTime;
         return this;
     }
@@ -67,20 +82,8 @@ public class User {
         return lastLoginTime;
     }
 
-    public User setLastLoginTime(Date lastLoginTime) {
+    public UserQC setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
         return this;
-    }
-
-    public User(Long id, String openId, String userName, String userImage, Date createTime, Date lastLoginTime) {
-        this.id = id;
-        this.openId = openId;
-        this.userName = userName;
-        this.userImage = userImage;
-        this.createTime = createTime;
-        this.lastLoginTime = lastLoginTime;
-    }
-
-    public User() {
     }
 }

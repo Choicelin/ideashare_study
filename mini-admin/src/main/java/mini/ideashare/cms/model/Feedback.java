@@ -8,7 +8,7 @@ import java.util.Date;
  **/
 public class Feedback {
     //自增主键
-    private Integer id;
+    private Long id;
     //邮件
     private String email;
     //手机
@@ -18,11 +18,11 @@ public class Feedback {
     //创建时间
     private Date createTime;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public Feedback setId(Integer id) {
+    public Feedback setId(Long id) {
         this.id = id;
         return this;
     }

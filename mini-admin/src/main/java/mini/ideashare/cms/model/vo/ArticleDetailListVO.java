@@ -6,7 +6,7 @@ package mini.ideashare.cms.model.vo;
  **/
 public class ArticleDetailListVO {
     //自增主键
-    private Integer id;
+    private Long id;
     //标题
     private String title;
     //描述
@@ -20,11 +20,11 @@ public class ArticleDetailListVO {
     //类别ID
     private Integer typeId;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public ArticleDetailListVO setId(Integer id) {
+    public ArticleDetailListVO setId(Long id) {
         this.id = id;
         return this;
     }

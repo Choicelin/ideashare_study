@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ArticleDetail {
     //自增主键
-    private Integer id;
+    private Long id;
     //标题
     private String title;
     //正文
@@ -71,11 +71,11 @@ public class ArticleDetail {
         return this;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public ArticleDetail setId(Integer id) {
+    public ArticleDetail setId(Long id) {
         this.id = id;
         return this;
     }

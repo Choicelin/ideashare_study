@@ -1,16 +1,133 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mini.ideashare.cms.dao.UserDAO">
-    <resultMap id="BaseResultMap" type="mini.ideashare.cms.model.User">
-       <result property="id" column="id"></result>
-        <result property="openId" column="open_id"></result>
-        <result property="userName" column="user_name"></result>
-        <result property="userImage" column="user_image"></result>
-        <result property="createTime" column="create_time"></result>
-        <result property="lastLoginTime" column="last_login_time"></result>
+    <resultMap id="BaseResultMap" type="mini.ideashare.cms.model.User" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="open_id" property="openId" jdbcType="VARCHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="user_image" property="userImage" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
     </resultMap>
-    <insert id="insert">
-        insert into users() VALUES(NULL,#{user.openId},#{user.userName},#{user.userImage},#{user.createTime},#{user.lastLoginTime})
+
+    <sql id="queryCondition" >
+        <where>
+            <if test="id != null" >
+                and id=#{id}
+            </if>
+            <if test="openId != null" >
+                and open_id=#{openId}
+            </if>
+            <if test="userName != null" >
+                and user_name=#{userName}
+            </if>
+            <if test="password != null" >
+                and password=#{password}
+            </if>
+            <if test="userImage != null" >
+                and user_image=#{userImage}
+            </if>
+            <if test="createTime != null" >
+                and create_time=#{createTime}
+            </if>
+            <if test="lastLoginTime != null" >
+                and last_login_time=#{lastLoginTime}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
+id,open_id,user_name,password,user_image,create_time,last_login_time
+</sql>
+    <insert id="insertUser" parameterType="mini.ideashare.cms.model.User">
+        insert into users
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="openId != null" >
+                open_id,
+            </if>
+            <if test="userName != null" >
+                user_name,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="userImage != null" >
+                user_image,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="lastLoginTime != null" >
+                last_login_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," ><if test="id != null">
+            #{id,jdbcType=BIGINT},
+        </if>
+            <if test="openId != null">
+                #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="userImage != null">
+                #{userImage,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLoginTime != null">
+                #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
     </insert>
+    <update id="updateUser" parameterType="mini.ideashare.cms.model.User">
+        UPDATE users
+        <trim prefix="set" suffixOverrides="," >
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="openId != null">
+                open_id = #{openId},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="userImage != null">
+                user_image = #{userImage},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime},
+            </if>
+        </trim>
+        WHERE  id = #{id}
+    </update>
+    <select id="listUser" parameterType="mini.ideashare.cms.qc.UserQC" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from users <include refid="queryCondition" />
+        <if test="sortBy != null and sortType != null" >
+            order by ${sortBy} ${sortType}
+        </if>
+        <if test="page != null">
+            <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
+        </if>
+    </select>
+    <select id="countUser" parameterType="mini.ideashare.cms.qc.UserQC" resultType="java.lang.Integer">
+        SELECT count(*) from users
+        <include refid="queryCondition"></include>
+    </select>
 
 </mapper>

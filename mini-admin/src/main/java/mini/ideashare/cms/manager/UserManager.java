@@ -10,6 +10,6 @@ public class UserManager {
     @Autowired
     private UserDAO userDAO;
     public int insert(User user){
-        return userDAO.insert(user);
+        return userDAO.insertUser(user);
     }
 }
