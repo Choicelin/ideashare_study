@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -21,6 +22,7 @@ public class UserManager {
         if(StringUtils.isEmpty(user.getPassword())){
             return 0;
         }
+        user.setCreateTime(new Date());
         return userDAO.insertUser(user);
     }
 
@@ -30,7 +32,10 @@ public class UserManager {
         userQC.setPassword(user.getPassword());
         List<User> userList = userDAO.listUser(userQC);
         if(userList.size()>0){
-            return userList.get(0);
+            User user1 = userList.get(0);
+            user1.setLastLoginTime(new Date());
+            userDAO.updateUser(user1);
+            return user1;
         }else {
             return null;
         }

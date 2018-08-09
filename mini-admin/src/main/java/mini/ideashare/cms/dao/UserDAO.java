@@ -12,6 +12,10 @@ import java.util.List;
 @Repository
 public interface UserDAO {
         int insertUser(User user);
+
         List<User> listUser(UserQC user);
+
         Integer countUser(UserQC user);
+
+        Integer updateUser(User user);
 }
