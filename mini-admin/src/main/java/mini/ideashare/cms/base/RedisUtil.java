@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings("unchecked")
 @Service
 public class RedisUtil {
-    public static final String USER_KEY = "CRM_USER_";
+    public static final String USER_KEY = "IS_USER_";
     public static final String CRM_LOGIN_VER_MAX = "CRM_LOGIN_VER_MAX_";
-    public static final Long CRM_LOGIN_VER_MAX_E = 60L * 60 * 12;
+    public static final Long IS_LOGIN_MAX = 60L * 60 * 12;
     public static final String CRM_LOGIN_VER = "CRM_LOGIN_VER_";
     public static final Long CRM_LOGIN_VER_E = 90L;
     public static final String CRM_API_TOKEN = "CRM_API_TOKEN_";
@@ -182,7 +182,7 @@ public class RedisUtil {
         Object now = get(key);
         if (now == null) {//根本没有
             if (ctrlTime == null) {
-                ctrlTime = CRM_LOGIN_VER_MAX_E;
+                ctrlTime = IS_LOGIN_MAX;
             }
             return incrByExpireTime(key, ctrlTime);
         } else if (Integer.parseInt(now.toString()) < max) {//未达最大 允许

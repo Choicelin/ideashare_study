@@ -1,6 +1,8 @@
 package mini.ideashare.cms.controller;
 
+import com.alibaba.fastjson.JSON;
 import mini.ideashare.cms.base.BaseResponse;
+import mini.ideashare.cms.base.RedisUtil;
 import mini.ideashare.cms.manager.UserManager;
 import mini.ideashare.cms.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +12,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import tech.ideashare.utils.IS_HttpUtils;
 
+import static mini.ideashare.cms.base.RedisUtil.IS_LOGIN_MAX;
+import static mini.ideashare.cms.base.RedisUtil.USER_KEY;
+
 
 @RestController
 public class UserController extends AbstractBaseController {
 
     @Autowired
     private UserManager userManager;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
 
 
@@ -33,6 +41,9 @@ public class UserController extends AbstractBaseController {
     @PostMapping("/user/login")
     public BaseResponse<User> login(@RequestBody  User user){
         User login = userManager.login(user);
+        if (login!=null){
+            redisUtil.set(USER_KEY + login.getId(), JSON.toJSONString(login),IS_LOGIN_MAX);
+        }
         return assembleResponse(login);
     }
 
