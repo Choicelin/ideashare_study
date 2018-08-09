@@ -17,8 +17,7 @@ public class UserQC extends BaseQC {
     private String password;
     //头像
     private String userImage;
-    //创建时间
-    private Date createTime;
+
     //最后一次登录时间
     private Date lastLoginTime;
 
@@ -67,16 +66,6 @@ public class UserQC extends BaseQC {
         return this;
     }
 
-    @Override
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    @Override
-    public UserQC setCreateTime(Date createTime) {
-        this.createTime = createTime;
-        return this;
-    }
 
     public Date getLastLoginTime() {
         return lastLoginTime;
