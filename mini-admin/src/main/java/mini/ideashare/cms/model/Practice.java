@@ -21,6 +21,10 @@ public class Practice {
     private String jobDesc;
     //工作要求
     private String jobRequire;
+    //访问量
+    private Long pv;
+    //点赞数
+    private Long likeCount;
     //发布人id，和user表关联
     private Long publisherId;
     //创建时间
@@ -126,6 +130,24 @@ public class Practice {
 
     public Practice setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+        return this;
+    }
+
+    public Long getPv() {
+        return pv;
+    }
+
+    public Practice setPv(Long pv) {
+        this.pv = pv;
+        return this;
+    }
+
+    public Long getLikeCount() {
+        return likeCount;
+    }
+
+    public Practice setLikeCount(Long likeCount) {
+        this.likeCount = likeCount;
         return this;
     }
 }

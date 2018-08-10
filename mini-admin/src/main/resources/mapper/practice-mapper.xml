@@ -10,6 +10,8 @@
         <result column="job_title" property="jobTitle" jdbcType="VARCHAR" />
         <result column="job_desc" property="jobDesc" jdbcType="VARCHAR" />
         <result column="job_require" property="jobRequire" jdbcType="VARCHAR" />
+        <result column="pv" property="pv" jdbcType="BIGINT" />
+        <result column="like_count" property="likeCount" jdbcType="BIGINT" />
         <result column="publisher_id" property="publisherId" jdbcType="BIGINT" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="updater" property="updater" jdbcType="VARCHAR" />
@@ -55,7 +57,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-id,company_name,company_city,major_type,job_title,job_desc,job_require,publisher_id,create_time,updater,update_time
+id,company_name,company_city,major_type,job_title,job_desc,job_require,pv,like_count,publisher_id,create_time,updater,update_time
 </sql>
     <insert id="insertPractice" parameterType="mini.ideashare.cms.model.Practice">
         insert into practice
@@ -153,6 +155,12 @@ id,company_name,company_city,major_type,job_title,job_desc,job_require,publisher
             <if test="jobRequire != null">
                 job_require = #{jobRequire},
             </if>
+            <if test="pv != null">
+                pv = #{pv},
+            </if>
+            <if test="likeCount != null">
+                like_count = like_count+1,
+            </if>
             <if test="publisherId != null">
                 publisher_id = #{publisherId},
             </if>
@@ -183,5 +191,22 @@ id,company_name,company_city,major_type,job_title,job_desc,job_require,publisher
         <include refid="queryCondition"></include>
     </select>
 
+    <update id="updatePvAndLikeCount" parameterType="mini.ideashare.cms.model.Practice">
+        UPDATE practice
+        <trim prefix="set" suffixOverrides="," >
+
+            <if test="pv != null">
+                pv = pv+1,
+            </if>
+            <if test="likeCount != null">
+                like_count = like_count+1,
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </trim>
+        WHERE  id = #{id}
+    </update>
 
 </mapper>

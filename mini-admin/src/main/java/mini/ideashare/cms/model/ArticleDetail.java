@@ -26,6 +26,10 @@ public class ArticleDetail {
     //更新时间
     private Date updateTime;
 
+    private Long pv;
+
+    private Long likeCount;
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -113,6 +117,24 @@ public class ArticleDetail {
 
     public ArticleDetail setAuthorId(Integer authorId) {
         this.authorId = authorId;
+        return this;
+    }
+
+    public Long getPv() {
+        return pv;
+    }
+
+    public ArticleDetail setPv(Long pv) {
+        this.pv = pv;
+        return this;
+    }
+
+    public Long getLikeCount() {
+        return likeCount;
+    }
+
+    public ArticleDetail setLikeCount(Long likeCount) {
+        this.likeCount = likeCount;
         return this;
     }
 }

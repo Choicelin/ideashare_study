@@ -18,4 +18,5 @@ public interface PracticeDAO {
     List<Practice> listPractice(PracticeQC practice);
     Integer countPractice(PracticeQC practice);
     int updatePractice(Practice practice);
+    int updatePvAndLikeCount(Practice practice);
 }

@@ -63,4 +63,8 @@ public class PracticeManager {
         }
     }
 
+    public int updatePvAndLikeCount(Practice practice){
+        return  practiceDAO.updatePvAndLikeCount(practice);
+    }
+
 }

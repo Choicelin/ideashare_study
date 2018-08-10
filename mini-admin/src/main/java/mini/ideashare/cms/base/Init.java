@@ -21,9 +21,9 @@ public class Init {
                  .setUserName("lixiang")
                  .setPassword("admin123");
          IS_ProjectConfig projectConfig = new IS_ProjectConfig();
-         projectConfig.setModelName("User").setPackageName("mini.ideashare.cms");
+         projectConfig.setModelName("Practice").setPackageName("mini.ideashare.cms");
 
-         MysqlTable table = IS_MySqlUtils.getTableInfo(config,"users");
+         MysqlTable table = IS_MySqlUtils.getTableInfo(config,"practice");
          System.out.println(IS_GenMapperUtils.generateModel(table));
          System.out.println(IS_GenMapperUtils.generateResultMap(table,projectConfig));
          System.out.println(IS_GenMapperUtils.generateQueryCondition(table));
@@ -33,8 +33,8 @@ public class Init {
          System.out.println(IS_GenMapperUtils.generateSelectSql(table,projectConfig));
          System.out.println(IS_GenMethodUtils.generateDao(projectConfig));
 
-         User user = new User();
-         user.setUserName("lixiang").setOpenId("1223").setCreateTime(new Date());
-         System.out.println(JSON.toJSONString(user));
+//         User user = new User();
+//         user.setUserName("lixiang").setPassword("1223");
+//         System.out.println(JSON.toJSONString(user));
     }
 }

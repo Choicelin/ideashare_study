@@ -61,4 +61,8 @@ public class ArticleManager {
         return articleTypeDAO.listArticleType(qc);
     }
 
+    public int updatePvAndLikeCount(ArticleDetail detail){
+        return articleDAO.updatePvAndLikeCount(detail);
+    }
+
 }

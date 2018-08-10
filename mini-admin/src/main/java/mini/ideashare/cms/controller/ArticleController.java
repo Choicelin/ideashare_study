@@ -37,6 +37,9 @@ public class ArticleController extends AbstractBaseController {
     @GetMapping("/article/getArticleDetailById")
     public BaseResponse<ArticleDetail> getArticleDetail(@RequestParam Integer id) {
         ArticleDetail articleDetail = articleManager.getArticleDetailById(id);
+        ArticleDetail updateDetail = new ArticleDetail();
+        updateDetail.setId(Long.valueOf(id)).setPv(1L);
+        articleManager.updatePvAndLikeCount(updateDetail);
         return assembleResponse(articleDetail);
     }
 

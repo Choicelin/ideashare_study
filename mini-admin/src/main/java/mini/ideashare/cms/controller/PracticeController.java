@@ -41,6 +41,10 @@ public class PracticeController extends AbstractBaseController {
     @GetMapping("/practice/getPracticeById")
     public BaseResponse<Practice> getPracticeById(@RequestParam Long id) {
         Practice practice = practiceManager.getPracticeDetail(id);
+        Practice updatePractice = new Practice();
+        updatePractice.setId(id).setPv(1L);
+
+        practiceManager.updatePvAndLikeCount(updatePractice);
         return assembleResponse(practice);
     }
 

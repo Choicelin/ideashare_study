@@ -11,6 +11,8 @@
         <result column="type" property="type" jdbcType="INTEGER" />
         <result column="original_flag" property="originalFlag" jdbcType="INTEGER" />
         <result column="type_id" property="typeId" jdbcType="INTEGER" />
+        <result column="pv" property="pv" jdbcType="BIGINT" />
+        <result column="like_count" property="likeCount" jdbcType="BIGINT" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     </resultMap>
@@ -39,7 +41,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-id,title,context,summary,author_id,type,original_flag,type_id,create_time,update_time
+id,title,context,summary,author_id,type,original_flag,type_id,pv,like_count,create_time,update_time
 </sql>
     <insert id="insertArticleDetail" parameterType="mini.ideashare.cms.model.ArticleDetail">
         insert into article_detail
@@ -128,6 +130,11 @@ id,title,context,summary,author_id,type,original_flag,type_id,create_time,update
             <if test="type != null">
                 type = #{type},
             </if>
+            <if test="pv != null">
+                pv = #{pv},
+            </if><if test="likeCount != null">
+                like_count = like_count+1,
+            </if>
             <if test="originalFlag != null">
                 original_flag = #{originalFlag},
             </if>
@@ -159,4 +166,21 @@ id,title,context,summary,author_id,type,original_flag,type_id,create_time,update
         <include refid="queryCondition"></include>
     </select>
 
+    <update id="updatePvAndLikeCount" parameterType="mini.ideashare.cms.model.ArticleDetail">
+        UPDATE article_detail
+        <trim prefix="set" suffixOverrides="," >
+
+            <if test="pv != null">
+                pv = pv+1,
+            </if>
+            <if test="likeCount != null">
+                like_count = like_count+1,
+            </if>
+
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </trim>
+        WHERE  id = #{id}
+    </update>
 </mapper>

@@ -14,6 +14,8 @@ public interface ArticleDAO {
 
     int updateArticleDetail(ArticleDetail articleDetail);
 
+    int updatePvAndLikeCount(ArticleDetail articleDetail);
+
     List<ArticleDetail> listArticleDetail(ArticleDetailQC articleDetail);
     Integer countArticleDetail(ArticleDetailQC articleDetail);
 }
