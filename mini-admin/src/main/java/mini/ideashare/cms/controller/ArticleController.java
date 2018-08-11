@@ -4,10 +4,9 @@ import mini.ideashare.cms.base.BaseResponse;
 import mini.ideashare.cms.base.PageData;
 import mini.ideashare.cms.manager.ArticleManager;
 import mini.ideashare.cms.model.ArticleDetail;
-import mini.ideashare.cms.model.ArticleType;
+import mini.ideashare.cms.model.Type;
 import mini.ideashare.cms.model.vo.ArticleDetailListVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,9 +16,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -72,9 +68,14 @@ public class ArticleController extends AbstractBaseController {
 
 
     @GetMapping("/article/getAllArticleType")
-    public BaseResponse<PageData<ArticleType>> getAllArticleType() {
-        List<ArticleType> articleTypes = articleManager.getAllArticleType();
-        return assemblePageResponse(articleTypes, 0, 0, 0);
+    public BaseResponse<PageData<Type>> getAllArticleType() {
+        List<Type> types = articleManager.getAllArticleType();
+        return assemblePageResponse(types, 0, 0, 0);
+    }
+    @GetMapping("/type/getAllType")
+    public BaseResponse<PageData<Type>> getAllType() {
+        List<Type> types = articleManager.getAllArticleType();
+        return assemblePageResponse(types, 0, 0, 0);
     }
 
     /**

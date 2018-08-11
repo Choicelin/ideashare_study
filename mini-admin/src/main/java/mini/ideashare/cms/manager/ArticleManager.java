@@ -1,11 +1,11 @@
 package mini.ideashare.cms.manager;
 
 import mini.ideashare.cms.dao.ArticleDAO;
-import mini.ideashare.cms.dao.ArticleTypeDAO;
+import mini.ideashare.cms.dao.TypeDAO;
 import mini.ideashare.cms.model.ArticleDetail;
-import mini.ideashare.cms.model.ArticleType;
+import mini.ideashare.cms.model.Type;
 import mini.ideashare.cms.qc.ArticleDetailQC;
-import mini.ideashare.cms.qc.ArticleTypeQC;
+import mini.ideashare.cms.qc.TypeQC;
 import mini.ideashare.cms.qc.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class ArticleManager {
     private ArticleDAO articleDAO;
 
     @Autowired
-    private ArticleTypeDAO articleTypeDAO;
+    private TypeDAO typeDAO;
 
     public ArticleDetail getArticleDetailById(Integer id){
         ArticleDetailQC qc = new ArticleDetailQC();
@@ -55,10 +55,10 @@ public class ArticleManager {
     }
 
 
-    public List<ArticleType> getAllArticleType(){
-        ArticleTypeQC qc = new ArticleTypeQC();
+    public List<Type> getAllArticleType(){
+        TypeQC qc = new TypeQC();
 
-        return articleTypeDAO.listArticleType(qc);
+        return typeDAO.listType(qc);
     }
 
     public int updatePvAndLikeCount(ArticleDetail detail){

@@ -21,9 +21,9 @@ public class Init {
                  .setUserName("lixiang")
                  .setPassword("admin123");
          IS_ProjectConfig projectConfig = new IS_ProjectConfig();
-         projectConfig.setModelName("Practice").setPackageName("mini.ideashare.cms");
+         projectConfig.setModelName("Type").setPackageName("mini.ideashare.cms");
 
-         MysqlTable table = IS_MySqlUtils.getTableInfo(config,"practice");
+         MysqlTable table = IS_MySqlUtils.getTableInfo(config,"type");
          System.out.println(IS_GenMapperUtils.generateModel(table));
          System.out.println(IS_GenMapperUtils.generateResultMap(table,projectConfig));
          System.out.println(IS_GenMapperUtils.generateQueryCondition(table));
