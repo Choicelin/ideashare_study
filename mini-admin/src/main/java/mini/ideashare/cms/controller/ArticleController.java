@@ -4,6 +4,7 @@ import mini.ideashare.cms.base.BaseResponse;
 import mini.ideashare.cms.base.PageData;
 import mini.ideashare.cms.manager.ArticleManager;
 import mini.ideashare.cms.model.ArticleDetail;
+import mini.ideashare.cms.model.ArticleType;
 import mini.ideashare.cms.model.Type;
 import mini.ideashare.cms.model.vo.ArticleDetailListVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +69,12 @@ public class ArticleController extends AbstractBaseController {
 
 
     @GetMapping("/article/getAllArticleType")
-    public BaseResponse<PageData<Type>> getAllArticleType() {
-        List<Type> types = articleManager.getAllArticleType();
+    public BaseResponse<PageData<ArticleType>> getAllArticleType() {
+        List<ArticleType> types = articleManager.getAllArticleType().stream().map(type->{
+            ArticleType articleType = new ArticleType();
+            articleType.setId(type.getId().intValue()).setLang(type.getTypeName());
+            return articleType;
+        }).collect(Collectors.toList());
         return assemblePageResponse(types, 0, 0, 0);
     }
     @GetMapping("/type/getAllType")

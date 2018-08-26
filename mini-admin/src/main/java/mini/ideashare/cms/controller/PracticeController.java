@@ -32,6 +32,10 @@ public class PracticeController extends AbstractBaseController {
                                                               @RequestParam Integer pageIndex,
                                                               @RequestParam Integer pageSize) {
 
+        if(typeId==0){
+            //如果是0的话，就是不分类别，都一次性获取到
+            typeId=null;
+        }
         List<Practice> practiceList = practiceManager.listPracticeByType(typeId, pageIndex, pageSize);
         int totalCount = practiceManager.countPracticeByType(typeId);
 
