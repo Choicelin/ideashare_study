@@ -55,11 +55,11 @@ public class PracticeManager {
         if(null==practice.getId()){
             //如果id为空的话，那就是新增
             practice.setCreateTime(new Date());
-            return practiceDAO.insertPractice(practice)>1;
+            return practiceDAO.insertPractice(practice)>0;
         }else {
             //如果id不为空的话，那就是更新
             practice.setUpdateTime(new Date());
-            return practiceDAO.updatePractice(practice)>1;
+            return practiceDAO.updatePractice(practice)>0;
         }
     }
 

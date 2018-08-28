@@ -43,6 +43,8 @@ public class UserController extends AbstractBaseController {
         User login = userManager.login(user);
         if (login!=null){
             redisUtil.set(USER_KEY + login.getId(), JSON.toJSONString(login),IS_LOGIN_MAX);
+        }else {
+            return assembleResponse(false,"","登录失败");
         }
         return assembleResponse(login);
     }

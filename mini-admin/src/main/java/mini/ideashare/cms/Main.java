@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
  * @CreateTime 2018/5/14
  **/
 @SpringBootApplication
-@ComponentScan
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

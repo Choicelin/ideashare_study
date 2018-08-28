@@ -13,13 +13,13 @@ public class Practice {
     private String companyName;
     //所在城市
     private String companyCity;
-    //专业类别
+    //技术关键词
     private Integer majorType;
-    //工作名称
+    //职位
     private String jobTitle;
-    //工作描述
+    //职位描述
     private String jobDesc;
-    //工作要求
+    //详细信息
     private String jobRequire;
     //访问量
     private Long pv;
