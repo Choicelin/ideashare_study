@@ -19,6 +19,27 @@ public class ArticleDetailListVO {
     private Integer originalFlag;
     //类别ID
     private Integer typeId;
+    private Integer likeCount;
+    private Integer pv;
+
+
+    public Integer getLikeCount() {
+        return likeCount;
+    }
+
+    public ArticleDetailListVO setLikeCount(Integer likeCount) {
+        this.likeCount = likeCount;
+        return this;
+    }
+
+    public Integer getPv() {
+        return pv;
+    }
+
+    public ArticleDetailListVO setPv(Integer pv) {
+        this.pv = pv;
+        return this;
+    }
 
     public Long getId() {
         return id;

@@ -55,12 +55,16 @@ public class ArticleController extends AbstractBaseController {
     public BaseResponse<PageData<ArticleDetailListVO>> listArticleByType(@RequestParam Integer typeId,
                                                                          @RequestParam Integer pageIndex,
                                                                          @RequestParam Integer pageSize) {
+        if(typeId==0){
+            typeId = null;
+        }
         List<ArticleDetailListVO> articleDetails = articleManager.listArticleByType(typeId, pageIndex, pageSize)
                 .stream().map(articleDetail -> {
                     ArticleDetailListVO vo = new ArticleDetailListVO();
                     vo.setAuthorId(articleDetail.getAuthorId()).setId(articleDetail.getId())
                             .setOriginalFlag(articleDetail.getOriginalFlag()).setSummary(articleDetail.getSummary())
-                            .setTitle(articleDetail.getTitle()).setType(articleDetail.getType()).setTypeId(articleDetail.getTypeId());
+                            .setTitle(articleDetail.getTitle()).setType(articleDetail.getType()).setTypeId(articleDetail.getTypeId())
+                    .setPv(articleDetail.getPv().intValue()).setLikeCount(articleDetail.getLikeCount().intValue());
                     return vo;
                 }).collect(Collectors.toList());
         int totalCount = articleManager.countArticleByType(typeId);
