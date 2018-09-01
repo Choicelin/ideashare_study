@@ -1,7 +1,7 @@
 package mini.ideashare.cms.dao;
 
 import mini.ideashare.cms.model.ArticleDetail;
-import mini.ideashare.cms.qc.ArticleDetailQC;
+import mini.ideashare.cms.model.qc.ArticleDetailQC;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

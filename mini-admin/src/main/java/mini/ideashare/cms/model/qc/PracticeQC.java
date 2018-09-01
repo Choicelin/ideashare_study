@@ -1,6 +1,4 @@
-package mini.ideashare.cms.qc;
-
-import java.util.Date;
+package mini.ideashare.cms.model.qc;
 
 /**
  * @Author lixiang

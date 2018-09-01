@@ -151,7 +151,7 @@ id,title,context,summary,author_id,type,original_flag,type_id,pv,like_count,crea
         WHERE  id = #{id}
     </update>
 
-    <select id="listArticleDetail" parameterType="mini.ideashare.cms.qc.ArticleDetailQC" resultMap="BaseResultMap">
+    <select id="listArticleDetail" parameterType="mini.ideashare.cms.model.qc.ArticleDetailQC" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
         from article_detail <include refid="queryCondition" />
         <if test="sortBy != null and sortType != null" >
@@ -161,7 +161,7 @@ id,title,context,summary,author_id,type,original_flag,type_id,pv,like_count,crea
             <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
         </if>
     </select>
-    <select id="countArticleDetail" parameterType="mini.ideashare.cms.qc.ArticleDetailQC" resultType="java.lang.Integer">
+    <select id="countArticleDetail" parameterType="mini.ideashare.cms.model.qc.ArticleDetailQC" resultType="java.lang.Integer">
         SELECT count(*) from article_detail
         <include refid="queryCondition"></include>
     </select>

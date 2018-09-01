@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mini.ideashare.cms.dao.QuestionDAO">
+
+    <resultMap id="BaseResultMap" type="mini.ideashare.cms.model.Question" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="creator" property="creator" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="pv" property="pv" jdbcType="BIGINT" />
+        <result column="like_count" property="likeCount" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="queryCondition" >
+        <where>
+            <if test="id != null" >
+                and id=#{id}
+            </if>
+            <if test="title != null" >
+                and title=#{title}
+            </if>
+            <if test="content != null" >
+                and content=#{content}
+            </if>
+            <if test="creator != null" >
+                and creator=#{creator}
+            </if>
+            <if test="createTime != null" >
+                and create_time=#{createTime}
+            </if>
+            <if test="pv != null" >
+                and pv=#{pv}
+            </if>
+            <if test="likeCount != null" >
+                and like_count=#{likeCount}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
+id,title,content,creator,create_time,pv,like_count
+</sql>
+    <insert id="insertQuestion" parameterType="mini.ideashare.cms.model.Question">
+        insert into question
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="creator != null" >
+                creator,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="pv != null" >
+                pv,
+            </if>
+            <if test="likeCount != null" >
+                like_count,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," ><if test="id != null">
+            #{id,jdbcType=BIGINT},
+        </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pv != null">
+                #{pv,jdbcType=BIGINT},
+            </if>
+            <if test="likeCount != null">
+                #{likeCount,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateQuestion" parameterType="mini.ideashare.cms.model.Question">
+        UPDATE question
+        <trim prefix="set" suffixOverrides="," >
+            <if test="id != null">
+                id = #{id},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="creator != null">
+                creator = #{creator},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="pv != null">
+                pv = #{pv},
+            </if>
+            <if test="likeCount != null">
+                like_count = #{likeCount},
+            </if>
+        </trim>
+        WHERE  id = #{id}
+    </update>
+    <select id="listQuestion" parameterType="mini.ideashare.cms.qc.QuestionQC" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from question <include refid="queryCondition" />
+        <if test="sortBy != null and sortType != null" >
+            order by ${sortBy} ${sortType}
+        </if>
+        <if test="page != null">
+            <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
+        </if>
+    </select>
+    <select id="countQuestion" parameterType="mini.ideashare.cms.qc.QuestionQC" resultType="java.lang.Integer">
+        SELECT count(*) from question
+        <include refid="queryCondition"></include>
+    </select>
+
+</mapper>

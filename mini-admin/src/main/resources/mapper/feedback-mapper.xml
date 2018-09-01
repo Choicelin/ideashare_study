@@ -90,7 +90,7 @@ id,email,mobile,content,create_time
         </trim>
         WHERE  id = #{id}
     </update>
-    <select id="listFeedback" parameterType="mini.ideashare.cms.qc.FeedbackQC" resultMap="BaseResultMap">
+    <select id="listFeedback" parameterType="mini.ideashare.cms.model.qc.FeedbackQC" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
         from feedback <include refid="queryCondition" />
         <if test="sortBy != null and sortType != null" >
@@ -100,7 +100,7 @@ id,email,mobile,content,create_time
             <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
         </if>
     </select>
-    <select id="countFeedback" parameterType="mini.ideashare.cms.qc.FeedbackQC" resultType="java.lang.Integer">
+    <select id="countFeedback" parameterType="mini.ideashare.cms.model.qc.FeedbackQC" resultType="java.lang.Integer">
         SELECT count(*) from feedback
         <include refid="queryCondition"></include>
     </select>

@@ -176,7 +176,7 @@ id,company_name,company_city,major_type,job_title,job_desc,job_require,pv,like_c
         </trim>
         WHERE  id = #{id}
     </update>
-    <select id="listPractice" parameterType="mini.ideashare.cms.qc.PracticeQC" resultMap="BaseResultMap">
+    <select id="listPractice" parameterType="mini.ideashare.cms.model.qc.PracticeQC" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
         from practice <include refid="queryCondition" />
         <if test="sortBy != null and sortType != null" >
@@ -186,7 +186,7 @@ id,company_name,company_city,major_type,job_title,job_desc,job_require,pv,like_c
             <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
         </if>
     </select>
-    <select id="countPractice" parameterType="mini.ideashare.cms.qc.PracticeQC" resultType="java.lang.Integer">
+    <select id="countPractice" parameterType="mini.ideashare.cms.model.qc.PracticeQC" resultType="java.lang.Integer">
         SELECT count(*) from practice
         <include refid="queryCondition"></include>
     </select>

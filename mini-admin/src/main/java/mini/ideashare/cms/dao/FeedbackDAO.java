@@ -1,7 +1,7 @@
 package mini.ideashare.cms.dao;
 
 import mini.ideashare.cms.model.Feedback;
-import mini.ideashare.cms.qc.FeedbackQC;
+import mini.ideashare.cms.model.qc.FeedbackQC;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

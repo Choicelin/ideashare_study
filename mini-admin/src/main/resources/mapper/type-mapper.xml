@@ -77,7 +77,7 @@
         </trim>
         WHERE  id = #{id}
     </update>
-    <select id="listType" parameterType="mini.ideashare.cms.qc.TypeQC" resultMap="BaseResultMap">
+    <select id="listType" parameterType="mini.ideashare.cms.model.qc.TypeQC" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
         from type <include refid="queryCondition" />
         <if test="sortBy != null and sortType != null" >
@@ -87,7 +87,7 @@
             <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
         </if>
     </select>
-    <select id="countType" parameterType="mini.ideashare.cms.qc.TypeQC" resultType="java.lang.Integer">
+    <select id="countType" parameterType="mini.ideashare.cms.model.qc.TypeQC" resultType="java.lang.Integer">
         SELECT count(*) from type
         <include refid="queryCondition"></include>
     </select>

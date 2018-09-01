@@ -1,7 +1,7 @@
 package mini.ideashare.cms.dao;
 
 import mini.ideashare.cms.model.Practice;
-import mini.ideashare.cms.qc.PracticeQC;
+import mini.ideashare.cms.model.qc.PracticeQC;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package mini.ideashare.cms.qc;
+package mini.ideashare.cms.model.qc;
 
 import java.util.Date;
 

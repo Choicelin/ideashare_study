@@ -4,9 +4,9 @@ import mini.ideashare.cms.dao.ArticleDAO;
 import mini.ideashare.cms.dao.TypeDAO;
 import mini.ideashare.cms.model.ArticleDetail;
 import mini.ideashare.cms.model.Type;
-import mini.ideashare.cms.qc.ArticleDetailQC;
-import mini.ideashare.cms.qc.TypeQC;
-import mini.ideashare.cms.qc.Page;
+import mini.ideashare.cms.model.qc.ArticleDetailQC;
+import mini.ideashare.cms.model.qc.TypeQC;
+import mini.ideashare.cms.model.qc.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

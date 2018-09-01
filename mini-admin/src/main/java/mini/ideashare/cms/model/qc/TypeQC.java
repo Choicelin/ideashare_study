@@ -1,4 +1,4 @@
-package mini.ideashare.cms.qc;
+package mini.ideashare.cms.model.qc;
 
 public class TypeQC extends BaseQC{
 

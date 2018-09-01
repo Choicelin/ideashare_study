@@ -1,9 +1,8 @@
 package mini.ideashare.cms.dao;
 
 import mini.ideashare.cms.model.User;
-import mini.ideashare.cms.qc.UserQC;
+import mini.ideashare.cms.model.qc.UserQC;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

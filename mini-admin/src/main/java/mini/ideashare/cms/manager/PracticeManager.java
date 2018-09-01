@@ -2,11 +2,9 @@ package mini.ideashare.cms.manager;
 
 
 import mini.ideashare.cms.dao.PracticeDAO;
-import mini.ideashare.cms.model.ArticleDetail;
 import mini.ideashare.cms.model.Practice;
-import mini.ideashare.cms.qc.ArticleDetailQC;
-import mini.ideashare.cms.qc.Page;
-import mini.ideashare.cms.qc.PracticeQC;
+import mini.ideashare.cms.model.qc.Page;
+import mini.ideashare.cms.model.qc.PracticeQC;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

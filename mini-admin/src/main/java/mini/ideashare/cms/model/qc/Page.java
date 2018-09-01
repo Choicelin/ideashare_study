@@ -1,4 +1,4 @@
-package mini.ideashare.cms.qc;
+package mini.ideashare.cms.model.qc;
 
 /**
  * 用于QC中对数据库的查询
