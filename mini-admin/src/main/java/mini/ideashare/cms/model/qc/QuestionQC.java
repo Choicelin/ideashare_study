@@ -11,6 +11,8 @@ public class QuestionQC extends BaseQC {
     private Long id;
     //问题标题
     private String title;
+    //问题分类id
+    private Integer type;
     //问题内容
     private String content;
     //问题创建人
@@ -23,6 +25,15 @@ public class QuestionQC extends BaseQC {
 
     public QuestionQC setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public QuestionQC setType(Integer type) {
+        this.type = type;
         return this;
     }
 

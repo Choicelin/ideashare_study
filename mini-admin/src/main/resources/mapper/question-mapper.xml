@@ -4,6 +4,7 @@
 
     <resultMap id="BaseResultMap" type="mini.ideashare.cms.model.Question" >
         <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="type" property="type" jdbcType="INTEGER" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="creator" property="creator" jdbcType="VARCHAR" />
@@ -16,6 +17,9 @@
         <where>
             <if test="id != null" >
                 and id=#{id}
+            </if>
+            <if test="type != null" >
+                and type=#{type}
             </if>
             <if test="title != null" >
                 and title=#{title}
@@ -39,13 +43,16 @@
     </sql>
 
     <sql id="Base_Column_List">
-id,title,content,creator,create_time,pv,like_count
+id,type,title,content,creator,create_time,pv,like_count
 </sql>
     <insert id="insertQuestion" parameterType="mini.ideashare.cms.model.Question">
         insert into question
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
                 id,
+            </if>
+            <if test="type != null" >
+                type,
             </if>
             <if test="title != null" >
                 title,
@@ -69,6 +76,9 @@ id,title,content,creator,create_time,pv,like_count
         <trim prefix="values (" suffix=")" suffixOverrides="," ><if test="id != null">
             #{id,jdbcType=BIGINT},
         </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
             <if test="title != null">
                 #{title,jdbcType=VARCHAR},
             </if>
@@ -94,6 +104,9 @@ id,title,content,creator,create_time,pv,like_count
         <trim prefix="set" suffixOverrides="," >
             <if test="id != null">
                 id = #{id},
+            </if>
+            <if test="type != null">
+                type = #{type},
             </if>
             <if test="title != null">
                 title = #{title},

@@ -52,12 +52,10 @@ public class ArticleController extends AbstractBaseController {
     }
 
     @GetMapping("/article/listArticleByType")
-    public BaseResponse<PageData<ArticleDetailListVO>> listArticleByType(@RequestParam Integer typeId,
+    public BaseResponse<PageData<ArticleDetailListVO>> listArticleByType(@RequestParam(required = false) Integer typeId,
                                                                          @RequestParam Integer pageIndex,
                                                                          @RequestParam Integer pageSize) {
-        if(typeId==0){
-            typeId = null;
-        }
+
         List<ArticleDetailListVO> articleDetails = articleManager.listArticleByType(typeId, pageIndex, pageSize)
                 .stream().map(articleDetail -> {
                     ArticleDetailListVO vo = new ArticleDetailListVO();
