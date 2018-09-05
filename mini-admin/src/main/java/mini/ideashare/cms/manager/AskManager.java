@@ -2,12 +2,15 @@ package mini.ideashare.cms.manager;
 
 import mini.ideashare.cms.dao.AnswerDAO;
 import mini.ideashare.cms.dao.QuestionDAO;
+import mini.ideashare.cms.model.Answer;
 import mini.ideashare.cms.model.Question;
+import mini.ideashare.cms.model.qc.AnswerQC;
 import mini.ideashare.cms.model.qc.Page;
 import mini.ideashare.cms.model.qc.QuestionQC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +38,19 @@ public class AskManager {
         QuestionQC qc = new QuestionQC();
         qc.setTypeId(typeId);
         return questionDAO.countQuestion(qc);
+    }
+
+    public boolean saveQuestion(Question question){
+
+        question.setCreateTime(new Date());
+        return questionDAO.insertQuestion(question)>1;
+
+    }
+
+    public List<Answer> listAnswerByQuestionId(Long questionId){
+        AnswerQC qc = new AnswerQC();
+        qc.setQuestionId(questionId);
+        return answerDAO.listAnswer(qc);
     }
 
 
