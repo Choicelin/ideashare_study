@@ -12,7 +12,7 @@ public class QuestionQC extends BaseQC {
     //问题标题
     private String title;
     //问题分类id
-    private Integer type;
+    private Integer typeId;
     //问题内容
     private String content;
     //问题创建人
@@ -28,12 +28,12 @@ public class QuestionQC extends BaseQC {
         return this;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getTypeId() {
+        return typeId;
     }
 
-    public QuestionQC setType(Integer type) {
-        this.type = type;
+    public QuestionQC setTypeId(Integer typeId) {
+        this.typeId = typeId;
         return this;
     }
 

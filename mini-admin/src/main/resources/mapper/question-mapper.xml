@@ -4,7 +4,7 @@
 
     <resultMap id="BaseResultMap" type="mini.ideashare.cms.model.Question" >
         <id column="id" property="id" jdbcType="BIGINT" />
-        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="type_id" property="typeId" jdbcType="INTEGER" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="creator" property="creator" jdbcType="VARCHAR" />
@@ -18,8 +18,8 @@
             <if test="id != null" >
                 and id=#{id}
             </if>
-            <if test="type != null" >
-                and type=#{type}
+            <if test="typeId != null" >
+                and type_id=#{typeId}
             </if>
             <if test="title != null" >
                 and title=#{title}
@@ -51,8 +51,8 @@ id,type,title,content,creator,create_time,pv,like_count
             <if test="id != null" >
                 id,
             </if>
-            <if test="type != null" >
-                type,
+            <if test="typeId != null" >
+                type_id,
             </if>
             <if test="title != null" >
                 title,
@@ -76,8 +76,8 @@ id,type,title,content,creator,create_time,pv,like_count
         <trim prefix="values (" suffix=")" suffixOverrides="," ><if test="id != null">
             #{id,jdbcType=BIGINT},
         </if>
-            <if test="type != null">
-                #{type,jdbcType=INTEGER},
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
             </if>
             <if test="title != null">
                 #{title,jdbcType=VARCHAR},
@@ -105,8 +105,8 @@ id,type,title,content,creator,create_time,pv,like_count
             <if test="id != null">
                 id = #{id},
             </if>
-            <if test="type != null">
-                type = #{type},
+            <if test="typeId != null">
+                type_id = #{typeId},
             </if>
             <if test="title != null">
                 title = #{title},
