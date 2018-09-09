@@ -129,7 +129,7 @@ id,parent_id,question_id,content,creator,create_time,update_time,like_count
         </trim>
         WHERE  id = #{id}
     </update>
-    <select id="listAnswer" parameterType="mini.ideashare.cms.qc.AnswerQC" resultMap="BaseResultMap">
+    <select id="listAnswer" parameterType="mini.ideashare.cms.model.qc.AnswerQC" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
         from answer <include refid="queryCondition" />
         <if test="sortBy != null and sortType != null" >
@@ -139,7 +139,7 @@ id,parent_id,question_id,content,creator,create_time,update_time,like_count
             <![CDATA[ limit #{page.startIndex},#{page.pageSize} ]]>
         </if>
     </select>
-    <select id="countAnswer" parameterType="mini.ideashare.cms.qc.AnswerQC" resultType="java.lang.Integer">
+    <select id="countAnswer" parameterType="mini.ideashare.cms.model.qc.AnswerQC" resultType="java.lang.Integer">
         SELECT count(*) from answer
         <include refid="queryCondition"></include>
     </select>
