@@ -5,7 +5,6 @@ import mini.ideashare.cms.base.PageData;
 import mini.ideashare.cms.manager.AskManager;
 import mini.ideashare.cms.model.Answer;
 import mini.ideashare.cms.model.Question;
-import mini.ideashare.cms.model.vo.ArticleDetailListVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Author lixiang
