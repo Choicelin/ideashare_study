@@ -30,20 +30,12 @@
             <if test="creator != null" >
                 and creator=#{creator}
             </if>
-            <if test="createTime != null" >
-                and create_time=#{createTime}
-            </if>
-            <if test="pv != null" >
-                and pv=#{pv}
-            </if>
-            <if test="likeCount != null" >
-                and like_count=#{likeCount}
-            </if>
+
         </where>
     </sql>
 
     <sql id="Base_Column_List">
-id,type,title,content,creator,create_time,pv,like_count
+id,type_id,title,content,creator,create_time,pv,like_count
 </sql>
     <insert id="insertQuestion" parameterType="mini.ideashare.cms.model.Question">
         insert into question

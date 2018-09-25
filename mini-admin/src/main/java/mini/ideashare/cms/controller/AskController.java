@@ -25,7 +25,7 @@ public class AskController extends AbstractBaseController {
     private AskManager askManager;
 
     @GetMapping("/ask/listQuestionByType")
-    public BaseResponse<PageData<Question>> listArticleByType(@RequestParam(required = false) Integer typeId,
+    public BaseResponse<PageData<Question>> listQuestionByType(@RequestParam(required = false) Integer typeId,
                                                                          @RequestParam Integer pageIndex,
                                                                          @RequestParam Integer pageSize) {
         List<Question> questions = askManager.listQuestionByType(typeId, pageIndex, pageSize);
@@ -36,7 +36,7 @@ public class AskController extends AbstractBaseController {
     }
 
     @PostMapping("/ask/saveQuestion")
-    public BaseResponse saveArticleDetail(@RequestBody Question question) {
+    public BaseResponse saveQuestion(@RequestBody Question question) {
         boolean successFlag = askManager.saveQuestion(question);
         return assembleResponse(successFlag);
     }
