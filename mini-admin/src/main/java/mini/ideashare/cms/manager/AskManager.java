@@ -46,11 +46,22 @@ public class AskManager {
         return questionDAO.insertQuestion(question)>1;
 
     }
+    public boolean saveAnswer(Answer answer){
+
+        answer.setCreateTime(new Date());
+        return answerDAO.insertAnswer(answer)>1;
+
+    }
 
     public List<Answer> listAnswerByQuestionId(Long questionId){
         AnswerQC qc = new AnswerQC();
         qc.setQuestionId(questionId);
         return answerDAO.listAnswer(qc);
+    }
+
+    public List<Question> listQuestionByQC(QuestionQC qc){
+
+        return questionDAO.listQuestion(qc);
     }
 
 
