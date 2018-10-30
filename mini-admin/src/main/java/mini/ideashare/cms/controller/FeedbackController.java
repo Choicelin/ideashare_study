@@ -6,8 +6,9 @@ import mini.ideashare.cms.manager.FeedbackManager;
 import mini.ideashare.cms.model.Feedback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tech.ideashare.utils.is_mail.IS_MailConfig;
-import tech.ideashare.utils.is_mail.IS_MailUtils;
+import utils.ideashare.utils.is_mail.IS_MailConfig;
+import utils.ideashare.utils.is_mail.IS_MailUtils;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

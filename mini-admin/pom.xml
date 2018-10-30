@@ -104,17 +104,6 @@
         </plugins>
 
     </build>
-    <repositories>
-        <repository>
-            <id>ideaShare-maven-snapshot-repository</id>
-            <name>ideaShare-maven-snapshot-repository</name>
-            <url>https://raw.github.com/ideaShareTech/maven-repo/snapshot/</url>
-        </repository>
-        <repository>
-            <id>ideaShare-maven-release-repository</id>
-            <name>ideaShare-maven-release-repository</name>
-            <url>https://raw.github.com/ideaShareTech/maven-repo/release/</url>
-        </repository>
-    </repositories>
+
     
 </project>
