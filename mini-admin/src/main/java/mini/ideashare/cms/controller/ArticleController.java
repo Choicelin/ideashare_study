@@ -56,6 +56,7 @@ public class ArticleController extends AbstractBaseController {
                                                                          @RequestParam Integer pageIndex,
                                                                          @RequestParam Integer pageSize) {
 
+        typeId = typeId ==0?null:typeId;
         List<ArticleDetailListVO> articleDetails = articleManager.listArticleByType(typeId, pageIndex, pageSize)
                 .stream().map(articleDetail -> {
                     ArticleDetailListVO vo = new ArticleDetailListVO();
